@@ -16,5 +16,7 @@ namespace socail_web2.Models
 
         public bool Active { get; set; } = true;
 
+        public List<Post> Posts { get; set; } = new List<Post>();
+
     }
 }

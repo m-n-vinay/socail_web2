@@ -15,5 +15,7 @@ namespace socail_web2.Data
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<socail_web2.Models.Post> Post { get; set; }
     }
 }
