@@ -1,8 +1,59 @@
-﻿@{
+﻿@model IEnumerable<socail_web2.Models.Post>
+
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+@*   -           -                -                         -               - *@
+
+<div class="row">
+    <div class="col-md-8">
+        @foreach (var item in Model) {
+
+    <div class="card mb-3 border-secondary shadow p-3 mb-5 bg-white rounded">
+      <a>
+        <img
+          src="@item.Image"
+          height="500"
+          width="auto"
+          class="card-img-top img-fluid"
+        />
+      </a>
+      <div class="card-body">
+        <h5 class="card-title text-primary text-uppercase">
+         @item.Title
+        </h5>
+        <p class="card-text">@item.Description</p>
+        <p class="card-text">
+          <small class="text-muted">by:- </small>
+        </p>
+      </div>
+      <div
+        class="card-footer bg-transparent border-secondary d-flex justify-content-around align-content-center"
+      >
+        <div (click)="upvotePost()" class="text-primary">
+          <fa-icon [icon]="faThumbsUp" size="lg" primaryColor="blue"></fa-icon>
+          {{ upvote }}
+        </div>
+        <div (click)="downvotePost()" class="text-secondary">
+          <fa-icon [icon]="faThumbsDown" size="lg" primaryColor="blue"></fa-icon>
+          {{ downvote }}
+        </div>
+        <a [href]="getInstaUrl()" target="_blank" class="text-primary">
+          <fa-icon [icon]="faShareSquare" size="lg" primaryColor="blue"></fa-icon>
+        </a>
+      </div>
+    </div>
+
+}
+    </div>
+    <div class="col-md-4">
+
+    </div>
+
+
 </div>
+
+
