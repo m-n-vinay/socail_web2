@@ -84,7 +84,7 @@ namespace socail_web2.Controllers
 
                     _context.Add(post);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index), "Home");
                 }
             }
             return View(postViewModel);
