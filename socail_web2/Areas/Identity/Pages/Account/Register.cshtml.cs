@@ -79,6 +79,10 @@ namespace socail_web2.Areas.Identity.Pages.Account
             [Display(Name = "LastName")]
             public string LastName { get; set; }
 
+            [Required]
+            [Display(Name = "Bio")]
+            public string Description { get; set; }
+
 
 
             /// <summary>
@@ -126,6 +130,7 @@ namespace socail_web2.Areas.Identity.Pages.Account
                 var user = CreateUser();
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.Description = Input.Description;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

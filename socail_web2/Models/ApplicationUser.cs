@@ -11,7 +11,7 @@ namespace socail_web2.Models
 
         public string FullName { get { return $"{FirstName} {LastName}"; } }
 
-
+        public string? Description { get; set; }
         public string? ProfilePic { get; set; }
 
         public bool Active { get; set; } = true;

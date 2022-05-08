@@ -37,12 +37,19 @@
         @foreach (ApplicationUser user in Model.Users)
         {
             <div class="card mb-3 mt-4 horizontal-display shadow p-3 bg-white rounded">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img [src]=@user.ProfilePic class="rounded-circle ml-2" />
-                </div>
                 <div class="card-body">
-                    <h5 class="card-title"> @user.UserName </h5>
-                    <p class="card-text">description</p>
+                    <div class="row">
+                        <div class="col-2 align-text-bottom">
+                             <img src="/icons/user.svg" class="rounded-circle" style="width: 40px; height: 40px;" />
+                        </div>
+                        <div class="col-10 align-text-bottom">
+                            <h5 class="card-title"> @user.UserName </h5>
+                            <p class="card-text">@user.Description</p>
+                        </div>
+
+                    </div>
+                   
+                    
                 </div>
             </div>
 
