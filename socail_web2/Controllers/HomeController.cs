@@ -4,6 +4,7 @@ using socail_web2.Models;
 using System.Diagnostics;
 using socail_web2.Data;
 using Microsoft.EntityFrameworkCore;
+using socail_web2.ViewModels;
 
 namespace socail_web2.Controllers
 {
@@ -21,7 +22,25 @@ namespace socail_web2.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            return View(await _context.Post.ToListAsync());
+            var posts = await (from p in _context.Post
+                              join u in _context.Users on p.ApplicationUserId equals u.Id
+                              select new PostViewModel
+                              {
+                                  Id = p.Id,
+                                  Title = p.Title,
+                                  Description = p.Description,
+                                  ImagePath = p.Image,
+                                  UserId = p.ApplicationUserId,
+                                  UseName = u.UserName
+                              }
+                ).ToListAsync();
+
+            var user = await (_context.Users).ToListAsync();
+
+            var indexView = new IndexViewModel();
+            indexView.Users = user;
+            indexView.Posts = posts;
+            return View(indexView);
         }
 
         public IActionResult Privacy()
