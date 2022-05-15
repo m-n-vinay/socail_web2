@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\ImagesOfPost\1b62331c-66dd-4370-8f63-8174d8bddb9f_IMG_20181202_120726.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\5b6baf64-d360-475d-b1e5-76d6a095b939_IMG_20181204_171140.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\5c0aed08-3874-4af3-a906-49809df9a0ca_IMG_20181209_162437.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\5cdab18b-6a15-4791-bd2b-1c4d1fe4c35b_IMG_20181204_115346.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\6a69f0cb-d46d-4966-b58f-c15adf8eaf9d_IMG_20181204_070311.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\9097d5a4-c0ac-49e9-8037-a3490abcd077_WhatsApp Image 2022-05-09 at 12.10.45 AM.jpeg" />
+    <Content Remove="wwwroot\ImagesOfPost\b61feb14-dd76-4b5a-937f-b02ddd71d8f8_IMG_20181204_164832.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\d8aaf4ee-16ff-4f97-8137-daa60014551f_IMG_20181203_153958.jpg" />
+    <Content Remove="wwwroot\ImagesOfPost\faf19569-4481-45f7-9c3f-301f7122afbb_IMG_20181209_162433.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.4" />
@@ -19,6 +31,18 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ImagesOfPost\1b62331c-66dd-4370-8f63-8174d8bddb9f_IMG_20181202_120726.jpg" />
+    <None Include="wwwroot\ImagesOfPost\5b6baf64-d360-475d-b1e5-76d6a095b939_IMG_20181204_171140.jpg" />
+    <None Include="wwwroot\ImagesOfPost\5c0aed08-3874-4af3-a906-49809df9a0ca_IMG_20181209_162437.jpg" />
+    <None Include="wwwroot\ImagesOfPost\5cdab18b-6a15-4791-bd2b-1c4d1fe4c35b_IMG_20181204_115346.jpg" />
+    <None Include="wwwroot\ImagesOfPost\6a69f0cb-d46d-4966-b58f-c15adf8eaf9d_IMG_20181204_070311.jpg" />
+    <None Include="wwwroot\ImagesOfPost\9097d5a4-c0ac-49e9-8037-a3490abcd077_WhatsApp Image 2022-05-09 at 12.10.45 AM.jpeg" />
+    <None Include="wwwroot\ImagesOfPost\b61feb14-dd76-4b5a-937f-b02ddd71d8f8_IMG_20181204_164832.jpg" />
+    <None Include="wwwroot\ImagesOfPost\d8aaf4ee-16ff-4f97-8137-daa60014551f_IMG_20181203_153958.jpg" />
+    <None Include="wwwroot\ImagesOfPost\faf19569-4481-45f7-9c3f-301f7122afbb_IMG_20181209_162433.jpg" />
   </ItemGroup>
 
 </Project>

@@ -1,17 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using socail_web2.Data;
 using socail_web2.Models;
 using socail_web2.ViewModels;
-using System;
-using System.IO;
-using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
@@ -86,6 +77,7 @@ namespace socail_web2.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index), "Home");
                 }
+                ModelState.AddModelError(nameof(PostViewModel.Image), "Upload a valid image.");
             }
             return View(postViewModel);
         }
@@ -175,28 +167,49 @@ namespace socail_web2.Controllers
             return _context.Post.Any(e => e.Id == id);
         }
 
+        private bool IsImage(PostViewModel model)
+        {
+            if (model.Image != null && 
+                    model.Image.ContentType.ToLower() == "image/jpg" ||
+                    model.Image.ContentType.ToLower() == "image/jpeg" ||
+                    model.Image.ContentType.ToLower() == "image/pjpeg" ||
+                    model.Image.ContentType.ToLower() == "image/gif" ||
+                    model.Image.ContentType.ToLower() == "image/x-png" ||
+                    model.Image.ContentType.ToLower() == "image/png")
+            {
+                return true;
+            }
+            return false;
+        }
+
         private string ProcessUploadedFile(PostViewModel model)
         {
-            string uniqueFileName = null;
-            string folderName = null;
-            if (model.Image != null)
+            var isImage = IsImage(model);
+            if (isImage)
             {
-                folderName = "ImagesOfPost";
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderName);
-                Directory.CreateDirectory(uploadsFolder);
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                string uniqueFileName = null;
+                string folderName = null;
+                if (model.Image != null)
                 {
-                    model.Image.CopyTo(fileStream);
+                    folderName = "ImagesOfPost";
+                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderName);
+                    Directory.CreateDirectory(uploadsFolder);
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.Image.CopyTo(fileStream);
+                    }
+                    if (uniqueFileName == null || folderName == null)
+                    {
+                        return null;
+                    }
+                    return $"{folderName}/{uniqueFileName}";
                 }
             }
-
-            if(uniqueFileName == null || folderName == null)
-            {
-                return null;
-            }
-            return $"{folderName}/{uniqueFileName}";
+            return null;
+            
         }
     }
 }
